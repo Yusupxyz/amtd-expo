@@ -17,7 +17,7 @@ import { FlatGrid } from 'react-native-super-grid';
 
 const placeholderImage = require('../assets/images/placeholder.png')
 
-const App = (props) => {
+const App = () => {
   const [id, setId] = useState([]);
   const [errorStatus, setErrorStatus] = useState(null);
   const [loaded, setLoaded] = useState(false);
@@ -57,7 +57,10 @@ const App = (props) => {
                 onPressIn={() => setPressedId(item[0])}
                 onPressOut={() => setPressedId(null)}
                 onPress={() => 
-                    router.push('index')}
+                    router.push({
+                      pathname: `detail/${item[0]}`,
+                      params: item
+                    })}
                 activeOpacity={0.7}
                 style={{ transform: [{ scale: pressedId === item[0] ? 0.96 : 1 }] }}
                 >

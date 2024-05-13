@@ -2,12 +2,15 @@ import axios from "axios";
 
 export const getAlatMusik = async () => {
     const response = await axios.get(`https://appdev161.000webhostapp.com/resource`)
+    // console.log(JSON.stringify(response));
+
     return response;
-    console.log(JSON.stringify(response));
 }
 
 export const getAlatMusikDetail = async (id) => {
+    console.log(`id adalah ${id}`);
     const response = await axios.get(`https://appdev161.000webhostapp.com/show/${id}`)
-    return response.data;
     // console.log(JSON.stringify(response.data));
+
+    return response.data;
 }
