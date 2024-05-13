@@ -3,8 +3,8 @@ import { Text, StyleSheet, Image, View, Dimensions, ActivityIndicator, ScrollVie
 import { router, useLocalSearchParams } from "expo-router";
 import { Card } from '@rneui/themed';
 import { getAlatMusikDetail } from '../request/request'
-import { Button } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Button, Icon } from 'react-native-elements';
+import { Audio } from 'expo-av';
 
 const dimensions = Dimensions.get('screen');
 
@@ -14,6 +14,7 @@ export default  App = () => {
   const [alatMusik, setAlatMusik] = useState([]);
   const [errorStatus, setErrorStatus] = useState(null);
   const [loaded, setLoaded] = useState(false);
+  const [sound, setSound] = useState(null);
 
   const getAlatMusikData = (id) => {
     return Promise.all([
@@ -23,19 +24,45 @@ export default  App = () => {
 
   useEffect(() => {
     getAlatMusikData(id).then(([alatMusikDetail]) => {
-      console.log(alatMusikDetail);
       setAlatMusik(alatMusikDetail);
-      // ding.setVolume(1);
     }).catch((err) => {
-        setErrorStatus(err.message);
+      setErrorStatus(err.message);
     }).finally(() => {
       setLoaded(true);
-      // ding.release();
-    })
-  }, [])
-  
-    return (
-      <>
+    });
+
+    return sound
+      ? () => {
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, []);
+
+  const playSound = async () => {
+    if (!sound) {
+      const { sound } = await Audio.Sound.createAsync(
+         { uri: `https://appdev161.000webhostapp.com/assets/uploads/${alatMusik.audio_mp3}` },
+         { shouldPlay: true }
+      );
+      setSound(sound);
+    }
+    await sound.playAsync();
+  };
+
+  const pauseSound = async () => {
+    if (sound) {
+      await sound.pauseAsync();
+    }
+  };
+
+  const stopSound = async () => {
+    if (sound) {
+      await sound.stopAsync();
+    }
+  };
+
+  return (
+    <>
       {!errorStatus && loaded && (
       <ScrollView style={styles.scrollSet}>
 
@@ -68,7 +95,7 @@ export default  App = () => {
                   })}
                 icon={
                     <Icon
-                    name="play"
+                    name="play-arrow"
                     size={15}
                     color="white"
                     />
@@ -82,57 +109,25 @@ export default  App = () => {
                 }}
               />
             </Card>
-            <Card>
+            <Card >
               <Card.Title style={styles.textStyle}>AUDIO</Card.Title>
               <Card.Divider />
-                <View style={styles.containerMain}>
-              <Button
-              buttonStyle={{color:'black'}}
-                containerStyle={{marginHorizontal:3}}
-                buttonStyle2={{
-                    borderRadius: 0,
-                    backgroundColor: 'black'
-                  }}
-              // onPress={play}
-                icon={
-                    <Icon
-                    name="play"
-                    size={13}
-                    color="white"
-                    />
-                }
-                
-                />
-                <Button
-                                containerStyle={{marginHorizontal:3}}
-                                buttonStyle={{
-                                    borderRadius: 0,
-                                    backgroundColor: 'black'
-                                  }}
-              // onPress={pause}
-                icon={
-                    <Icon
-                    name="pause"
-                    size={13}
-                    color="white"
-                    />
-                }
-                />
-                <Button
-                                containerStyle={{marginHorizontal:3}}
-                                buttonStyle={{
-                                    borderRadius: 0,
-                                    backgroundColor: 'black'
-                                  }}
-              // onPress={stop}
-                icon={
-                    <Icon
-                    name="stop"
-                    size={13}
-                    color="white"
-                    />
-                }
-                />
+                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                  <Button
+                    icon={<Icon name="play-arrow" size={13} color="white" />}
+                    buttonStyle={{ backgroundColor: 'blue', marginRight: 5 }}
+                    onPress={playSound}
+                  />
+                  <Button
+                    icon={<Icon name="pause" size={13} color="white" />}
+                    buttonStyle={{ backgroundColor: 'orange', marginHorizontal: 5 }}
+                    onPress={pauseSound}
+                  />
+                  <Button
+                    icon={<Icon name="stop" size={13} color="white" />}
+                    buttonStyle={{ backgroundColor: 'red', marginLeft: 5 }}
+                    onPress={stopSound}
+                  />
                 </View>
             </Card>
           </View>

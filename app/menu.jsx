@@ -1,6 +1,7 @@
 // import React in our code
 import React, {useEffect, useState} from 'react';
 import { router } from "expo-router";
+import { LogBox } from 'react-native';
 
 // import all the components we are going to use
 import {
@@ -16,7 +17,7 @@ import { getAlatMusik } from './request/request'
 import { FlatGrid } from 'react-native-super-grid';
 
 const placeholderImage = require('../assets/images/placeholder.png')
-
+LogBox.ignoreAllLogs(); // Ini akan menonaktifkan semua peringatan
 const App = () => {
   const [id, setId] = useState([]);
   const [errorStatus, setErrorStatus] = useState(null);
