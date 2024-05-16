@@ -13,7 +13,7 @@ const LoadingText = ({ isLoading }) => {
 const App = () => {
     const source = useLocalSearchParams().video;
 
-    console.log(`https://appdev161.000webhostapp.com/assets/uploads/${source}`);
+    console.log(`hhttps://testcaseapp123.000webhostapp.com/assets/uploads/${source}`);
 
     if (!source) {
         return <Text>Loading...</Text>; // Atau komponen lain untuk menangani state loading atau error
@@ -58,7 +58,7 @@ const App = () => {
             <Video
                 ref={videoRef}
                 style={styles.video}
-                source={{ uri: `https://appdev161.000webhostapp.com/assets/uploads/${source}` }}
+                source={{ uri: `hhttps://testcaseapp123.000webhostapp.com/assets/uploads/${source}` }}
                 resizeMode="cover"
                 isLooping
                 isMuted={isMuted}

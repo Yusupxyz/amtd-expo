@@ -41,7 +41,7 @@ export default  App = () => {
   const playSound = async () => {
     if (!sound) {
       const { sound } = await Audio.Sound.createAsync(
-         { uri: `https://appdev161.000webhostapp.com/assets/uploads/${alatMusik.audio_mp3}` },
+         { uri: `hhttps://testcaseapp123.000webhostapp.com/assets/uploads/${alatMusik.audio_mp3}` },
          { shouldPlay: true }
       );
       setSound(sound);
@@ -67,7 +67,7 @@ export default  App = () => {
       <ScrollView style={styles.scrollSet}>
 
         <Image style={styles.image} 
-                      source={{uri: `https://appdev161.000webhostapp.com/assets/uploads/${alatMusik.gambar}`}}
+                      source={{uri: `hhttps://testcaseapp123.000webhostapp.com/assets/uploads/${alatMusik.gambar}`}}
                       ></Image>
         <View style={styles.containerMain}>
           <View style={styles.containerDesc}>
