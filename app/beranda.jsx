@@ -29,7 +29,7 @@ export default class App extends React.Component {
           </TouchableOpacity>
                   <View style={styles.bottomView}>
 
-          <TouchableHighlight onPress={() => Linking.openURL('mailto:support@example.com')}>
+          <TouchableHighlight onPress={() => Linking.openURL('mailto:denzkiizooeden@gmail.com')}>
           <Image
             style={styles.tinyLogo}
             source={require('../assets/images/003-email.png')
@@ -37,21 +37,21 @@ export default class App extends React.Component {
           />
         </TouchableHighlight>
         <Separator/>
-        <TouchableHighlight onPress={() => Linking.openURL('whatsapp://send?text=Hello&phone=0812345678')}>
+        <TouchableHighlight onPress={() => Linking.openURL('whatsapp://send?text=Hello&phone=0895337907745')}>
           <Image
             style={styles.tinyLogo}
             source={require('../assets/images/001-whatsapp.png')}
           />
         </TouchableHighlight>
          <Separator/>
-         <TouchableHighlight onPress={() => Linking.canOpenURL("fb://profile/100003344270012")}>
+         <TouchableHighlight onPress={() => Linking.openURL("fb://profile/100003860259753")}>
           <Image
             style={styles.tinyLogo}
             source={require('../assets/images/002-facebook.png')}
           />
         </TouchableHighlight>
          <Separator/>
-         <TouchableHighlight onPress={() => Linking.openURL('instagram://user?username=yusufxyz114')}>
+         <TouchableHighlight onPress={() => Linking.openURL('instagram://user?username=Edentrii')}>
           <Image
             style={styles.tinyLogo}
             source={require('../assets/images/004-instagram.png')}
