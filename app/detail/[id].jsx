@@ -26,6 +26,7 @@ export default  App = () => {
     getAlatMusikData(id).then(([alatMusikDetail]) => {
       setAlatMusik(alatMusikDetail);
     }).catch((err) => {
+      console.log(err);  // Lihat struktur objek error
       setErrorStatus(err.message);
     }).finally(() => {
       setLoaded(true);
@@ -41,7 +42,7 @@ export default  App = () => {
   const playSound = async () => {
     if (!sound) {
       const { sound } = await Audio.Sound.createAsync(
-         { uri: `hhttps://testcaseapp123.000webhostapp.com/assets/uploads/${alatMusik.audio_mp3}` },
+         { uri: `https://testcaseapp123.000webhostapp.com/assets/uploads/${alatMusik.audio_mp3}` },
          { shouldPlay: true }
       );
       setSound(sound);
@@ -67,7 +68,7 @@ export default  App = () => {
       <ScrollView style={styles.scrollSet}>
 
         <Image style={styles.image} 
-                      source={{uri: `hhttps://testcaseapp123.000webhostapp.com/assets/uploads/${alatMusik.gambar}`}}
+                      source={{uri: `https://testcaseapp123.000webhostapp.com/assets/uploads/${alatMusik.gambar}`}}
                       ></Image>
         <View style={styles.containerMain}>
           <View style={styles.containerDesc}>

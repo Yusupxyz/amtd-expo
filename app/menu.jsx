@@ -74,7 +74,7 @@ const App = () => {
                     style={styles.imageThumbnail}
                     source={item[2]
                       ? {
-                        uri: 'hhttps://testcaseapp123.000webhostapp.com/assets/uploads/' + item[2]
+                        uri: 'https://testcaseapp123.000webhostapp.com/assets/uploads/' + item[2]
                       }
                       : placeholderImage
                     }
